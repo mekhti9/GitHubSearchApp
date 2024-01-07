@@ -12,13 +12,15 @@ class SearchVC: UIViewController {
     let logoImageView = UIImageView()
     let usernameTextField = GFTextField()
     let callToActionButton = GFButton(backgroundcolor: .systemGreen, title: "search govno")
+    
+    var isUsernameEntered: Bool { return !usernameTextField.text!.isEmpty }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureLogoImageView()
         configureTextField()
-        configurecallToActionButton()
+        configureCallToActionButton()
         createDismissKeyboardTapGesture()
     }
     
@@ -34,6 +36,14 @@ class SearchVC: UIViewController {
     
     @objc func pushFollowerListVC() {
         
+        guard isUsernameEntered else {
+            print("no username")
+            return
+        }
+        let followerListVC = FollowerListVC()
+        followerListVC.username = usernameTextField.text
+        followerListVC.title = usernameTextField.text
+        navigationController?.pushViewController(followerListVC, animated: true)
     }
     
     func configureLogoImageView() {
@@ -61,8 +71,9 @@ class SearchVC: UIViewController {
         ])
     }
     
-    func configurecallToActionButton() {
+    func configureCallToActionButton() {
         view.addSubview(callToActionButton)
+        callToActionButton.addTarget(self, action: #selector(pushFollowerListVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
             callToActionButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
@@ -75,7 +86,7 @@ class SearchVC: UIViewController {
 
 extension SearchVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("didadadudaday")
+        pushFollowerListVC()
         return true
     }
 }
