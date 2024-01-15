@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "DD47635F-4F51-4C40-AEFF-592F326AAE10"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5C99046-8AD0-4170-83D8-1A8595EAB99D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "tutorGitApp/Screens/FollowerListVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "13"
+            endingLineNumber = "13"
+            landmarkName = "FollowerListVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "A5C99046-8AD0-4170-83D8-1A8595EAB99D - e274db23066f9560"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "tutorGitApp.FollowerListVC.username.getter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "tutorGitApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mehdimagerramov/xCode/tutorGitApp/tutorGitApp/Screens/FollowerListVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "A5C99046-8AD0-4170-83D8-1A8595EAB99D - a4ca5be96915ccaa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "tutorGitApp.FollowerListVC.username.setter : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "tutorGitApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mehdimagerramov/xCode/tutorGitApp/tutorGitApp/Screens/FollowerListVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "A5C99046-8AD0-4170-83D8-1A8595EAB99D - 99efabc9af5c36bd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "tutorGitApp.FollowerListVC.username.modify : Swift.Optional&lt;Swift.String&gt;"
+                  moduleName = "tutorGitApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mehdimagerramov/xCode/tutorGitApp/tutorGitApp/Screens/FollowerListVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "A5C99046-8AD0-4170-83D8-1A8595EAB99D - 7dae6065420a6086"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "tutorGitApp.FollowerListVC.username.modify : Swift.Optional&lt;Swift.String&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "tutorGitApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mehdimagerramov/xCode/tutorGitApp/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "A5C99046-8AD0-4170-83D8-1A8595EAB99D - 9b63ebd067af8403"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "tutorGitApp.FollowerListVC.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; tutorGitApp.FollowerListVC"
+                  moduleName = "tutorGitApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mehdimagerramov/xCode/tutorGitApp/tutorGitApp/Screens/FollowerListVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "A5C99046-8AD0-4170-83D8-1A8595EAB99D - 8cf03f85befebca6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "tutorGitApp.FollowerListVC.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;tutorGitApp.FollowerListVC&gt;"
+                  moduleName = "tutorGitApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mehdimagerramov/xCode/tutorGitApp/tutorGitApp/Screens/FollowerListVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

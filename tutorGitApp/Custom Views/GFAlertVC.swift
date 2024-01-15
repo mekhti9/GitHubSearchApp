@@ -74,10 +74,10 @@ class GFAlertVC: UIViewController {
         actionButton.addTarget(self, action: #selector(dissmissVC), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            actionButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100),
             actionButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -padding),
             actionButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: padding),
             actionButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -padding),
+            actionButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     
