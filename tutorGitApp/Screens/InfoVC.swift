@@ -7,13 +7,20 @@
 
 import UIKit
 
+protocol InfoVCDelegate {
+    func didTapGitHubProfile(for user: User)
+    func didTapGetFollowers(for user: User)
+}
+
 class InfoVC: UIViewController {
     
     var username: String!
+    weak var delegate: FollowerListVCDelegate!
     
-    let headerView = UIView()
+    let headerView  = UIView()
     let itemViewOne = UIView()
     let itemViewTwo = UIView()
+    let dateLabel   = GFBodyLabel(textAlignment: .center)
     var itemViews: [UIView] = []
 
     override func viewDidLoad() {
@@ -35,10 +42,7 @@ class InfoVC: UIViewController {
             
             switch result {
             case.success(let user):
-                DispatchQueue.main.async {
-                    print(user)
-                    self.add(childController: GFUserInfoHeaderVC(user: user), to: self.headerView)
-                }
+                DispatchQueue.main.async { self.configureUIElements(with: user) }
                 
             case.failure(let error):
                 self.presentGFAlertOnMainThread(title: "sum went wrong my beautiful nigga", message: error.rawValue, button: "ok")
@@ -47,16 +51,26 @@ class InfoVC: UIViewController {
         print(username ?? "some nigga")
     }
     
+    func configureUIElements(with user: User) {
+        let repoItemVC = GFRepoItemVC(user: user)
+        repoItemVC.delegate = self
+        
+        let followerItemVc = GFFollowersItemVC(user: user)
+        followerItemVc.delegate = self
+        
+        self.add(childController: GFUserInfoHeaderVC(user: user), to: self.headerView)
+        self.add(childController: repoItemVC, to: self.itemViewOne)
+        self.add(childController: followerItemVc, to: self.itemViewTwo)
+        self.dateLabel.text = "bro was born \(user.createdAt.convertToDisplayFormat())"
+    }
+    
     func layoutUI() {
-        itemViews = [headerView, itemViewOne, itemViewTwo]
+        itemViews = [headerView, itemViewOne, itemViewTwo, dateLabel]
         
         for ItemView in itemViews {
             view.addSubview(ItemView)
             ItemView.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        itemViewOne.backgroundColor = .systemRed
-        itemViewTwo.backgroundColor = .systemGreen
         
         let padding: CGFloat = 20
         let itemHeight: CGFloat = 140
@@ -67,7 +81,7 @@ class InfoVC: UIViewController {
             headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             headerView.heightAnchor.constraint(equalToConstant: itemHeight),
             
-            itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 40),
+            itemViewOne.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 60),
             itemViewOne.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: padding),
             itemViewOne.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -padding),
             itemViewOne.heightAnchor.constraint(equalToConstant: itemHeight),
@@ -75,7 +89,12 @@ class InfoVC: UIViewController {
             itemViewTwo.topAnchor.constraint(equalTo: itemViewOne.bottomAnchor, constant: 40),
             itemViewTwo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
             itemViewTwo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
-            itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeight)
+            itemViewTwo.heightAnchor.constraint(equalToConstant: itemHeight),
+            
+            dateLabel.topAnchor.constraint(equalTo: itemViewTwo.bottomAnchor, constant: 30),
+            dateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: padding),
+            dateLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -padding),
+            dateLabel.heightAnchor.constraint(equalToConstant: 18)
         ])
     }
     
@@ -88,5 +107,26 @@ class InfoVC: UIViewController {
     
     @objc func dismissVC() {
         dismiss(animated: true)
+    }
+}
+
+extension InfoVC: InfoVCDelegate {
+    
+    func didTapGitHubProfile(for user: User) {
+        guard let url = URL(string: user.htmlUrl) else { 
+            presentGFAlertOnMainThread(title: "invalid request", message: "url error", button: "bomboclat")
+            return
+        }
+        
+        presentSafariVC(with: url)
+    }
+    
+    func didTapGetFollowers(for user: User) {
+        guard user.followers != 0 else {
+            presentGFAlertOnMainThread(title: "no followers", message: "go and follow that nigga", button: "ok")
+            return
+        }
+        delegate.didRequestFollowers(for: user.login)
+        dismissVC()
     }
 }
