@@ -27,8 +27,7 @@ class FollowerListVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
+        configureVC()
         configureCollectionView()
         getFollowers(username: username, page: page)
         configureDataSource()
@@ -38,6 +37,14 @@ class FollowerListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func configureVC() {
+        view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonAction))
+        navigationItem.rightBarButtonItem = addButton
     }
     
     func configureCollectionView() {
@@ -95,6 +102,34 @@ class FollowerListVC: UIViewController {
         snapshot.appendItems(followers)
         DispatchQueue.main.async {
             self.dataSource.apply(snapshot, animatingDifferences: true)
+        }
+    }
+    
+    @objc func addButtonAction() {
+        showLoadingView()
+        
+        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+            guard let self = self else { return }
+            self.dismissLoadingView()
+            
+            switch result {
+            case .success(let user):
+                let favorite = Follower(login: user.login, avatarUrl: user.avatarUrl)
+                
+                PersistenceManager.updateWith(favorite: favorite, actionType: .add) { [weak self] error in
+                    guard let self = self else { return }
+                    
+                    guard let error = error else {
+                        self.presentGFAlertOnMainThread(title: "succes", message: "u win", button: "thanks")
+                        return
+                    }
+                    self.presentGFAlertOnMainThread(title: "failure", message: error.rawValue, button: "thanks")
+                }
+                
+                
+            case .failure(let error):
+                self.presentGFAlertOnMainThread(title: "never give up", message: error.rawValue, button: "ok")
+            }
         }
     }
 }

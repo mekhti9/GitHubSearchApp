@@ -12,4 +12,5 @@ enum GFError: String, Error {
     case unableToComplete = "Unable to complete your request. Got me a check i got a check sheesh."
     case invalidResponse = "Invalid response from server."
     case invalidData = "The data received from server was invalid."
+    case unableToFavorite = "gooooooooooo whoooooooaaaah"
 }
